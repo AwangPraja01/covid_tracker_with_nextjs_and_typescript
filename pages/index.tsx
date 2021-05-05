@@ -2,26 +2,26 @@ import Head from "next/head";
 import Header from "../component/Header";
 import DataDisplay from "../component/DataDisplay";
 import DataTitle from "../component/DataTitle";
-import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import { FunctionComponent, useState } from "react";
-import { useRouter } from "next/router";
-
-type Data = {
-  country: string;
-  provinces: [];
-};
+import {
+  GetServerSideProps,
+  GetServerSidePropsContext,
+  InferGetServerSidePropsType,
+} from "next";
+import { FunctionComponent, useState, ChangeEvent } from "react";
+import { NextRouter, useRouter } from "next/router";
+import { IData } from "../Interfaces";
 
 const Home: FunctionComponent = ({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const router = useRouter();
-  const [country, setCountry] = useState("Italy");
+  const router: NextRouter = useRouter();
+  const [country, setCountry] = useState<string>("Italy");
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLSelectElement>): void => {
     setCountry(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: ChangeEvent<HTMLFormElement>): void => {
     e.preventDefault();
     router.push({
       pathname: "/",
@@ -50,21 +50,21 @@ const Home: FunctionComponent = ({
             <DataDisplay
               title='deaths'
               backgroundColor='bg-red-500'
-              totalCounter={data[0].provinces[0].deaths}
+              counter={data[0].provinces[0].deaths}
             />
           </div>
           <div>
             <DataDisplay
               title='recovered'
               backgroundColor='bg-green-400'
-              totalCounter={data[0].provinces[0].recovered}
+              counter={data[0].provinces[0].recovered}
             />
           </div>
           <div>
             <DataDisplay
               title='confirmed'
               backgroundColor='bg-yellow-400'
-              totalCounter={data[0].provinces[0].confirmed}
+              counter={data[0].provinces[0].confirmed}
             />
           </div>
           <div className='col-span-3 mt-4 '>
@@ -93,14 +93,16 @@ const Home: FunctionComponent = ({
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  let countryName = context.query.country;
+export const getServerSideProps: GetServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
+  let countryName: string | string[] = context.query.country;
 
   if (!countryName) {
     countryName = "Italy";
   }
 
-  const res = await fetch(
+  const res: Response = await fetch(
     `https://covid-19-data.p.rapidapi.com/report/country/name?name=${countryName}&date=2020-04-01`,
     {
       method: "GET",
@@ -111,7 +113,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
   );
 
-  const data: Data = await res.json();
+  const data: IData = await res.json();
 
   return {
     props: { data },

@@ -1,12 +1,12 @@
-import React, { FunctionComponent } from "react";
+import React from "react";
 import moment from "moment";
 
-type Props = {
+interface Props {
   countryName: string;
   date: string;
-};
+}
 
-const DataTitle: FunctionComponent<Props> = ({ countryName, date }) => {
+const DataTitle = ({ countryName, date }: Props) => {
   return (
     <div className='flex flex-col justify-center items-center font-open-sans'>
       <h1 className='font-bold text-4xl mb-2'>{countryName}</h1>

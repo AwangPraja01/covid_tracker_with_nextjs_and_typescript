@@ -1,16 +1,12 @@
-import React, { FunctionComponent } from "react";
+import React from "react";
 
-type Props = {
+interface Props {
   title: string;
-  totalCounter: number;
+  counter: number;
   backgroundColor: string;
-};
+}
 
-const DataDisplay: FunctionComponent<Props> = ({
-  title,
-  totalCounter,
-  backgroundColor,
-}) => {
+const DataDisplay = ({ title, counter, backgroundColor }: Props) => {
   return (
     <div
       className={`${backgroundColor} rounded-md p-6 font-open-sans font-bold w-full h-48 flex flex-col justify-center items-center`}>
@@ -19,7 +15,7 @@ const DataDisplay: FunctionComponent<Props> = ({
       </div>
       <div className='text-lg'>
         <span>Total : </span>
-        <span className='font-normal'>{totalCounter}</span>
+        <span className='font-normal'>{counter}</span>
       </div>
     </div>
   );
