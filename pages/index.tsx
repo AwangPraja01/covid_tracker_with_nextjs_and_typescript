@@ -79,6 +79,23 @@ const Home: FunctionComponent = ({
                   <option value='Italy'>Italy</option>
                   <option value='Afghanistan'>Afghanistan</option>
                   <option value='Algeria'>Algeria</option>
+                  <option value='Albania'>Albania</option>
+                  <option value='Andorra'>Andorra</option>
+                  <option value='Australia'>Australia</option>
+                  <option value='Azerbaijan'>Azerbaijan</option>
+                  <option value='Bahamas'>Bahamas</option>
+                  <option value='Bangladesh'>Bangladesh</option>
+                  <option value='Barbados'>Barbados</option>
+                  <option value='Belarus'>Belarus</option>
+                  <option value='Belgium'>Belgium</option>
+                  <option value='Bhutan'>Bhutan</option>
+                  <option value='Bolivia'>Bolivia</option>
+                  <option value='Brazil'>Brazil</option>
+                  <option value='Brunei'>Brunei</option>
+                  <option value='Bulgaria'>Bulgaria</option>
+                  <option value='Cabo Verde'>Cabo Verde</option>
+                  <option value='Cambodia'>Cambodia</option>
+                  <option value='Cameroon'>Cameroon</option>
                 </select>
               </label>
               <input
