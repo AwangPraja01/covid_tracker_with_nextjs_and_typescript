@@ -29,8 +29,6 @@ const Home: FunctionComponent = ({
     });
   };
 
-  console.log(data);
-
   return (
     <div>
       <Head>
@@ -45,31 +43,28 @@ const Home: FunctionComponent = ({
 
       <main>
         <div className='py-6'>
-          <DataTitle />
+          <DataTitle date={data[0].date} countryName={data[0].country} />
         </div>
         <div className='grid grid-cols-3  px-24 gap-x-8'>
           <div>
             <DataDisplay
               title='deaths'
               backgroundColor='bg-red-500'
-              newCounter={999999}
-              totalCounter={99999999}
+              totalCounter={data[0].provinces[0].deaths}
             />
           </div>
           <div>
             <DataDisplay
               title='recovered'
               backgroundColor='bg-green-400'
-              newCounter={999999}
-              totalCounter={99999999}
+              totalCounter={data[0].provinces[0].recovered}
             />
           </div>
           <div>
             <DataDisplay
               title='confirmed'
               backgroundColor='bg-yellow-400'
-              newCounter={999999}
-              totalCounter={99999999}
+              totalCounter={data[0].provinces[0].confirmed}
             />
           </div>
           <div className='col-span-3 mt-4 '>
@@ -119,7 +114,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const data: Data = await res.json();
 
   return {
-    props: { data }, // will be passed to the page component as props
+    props: { data },
   };
 };
 

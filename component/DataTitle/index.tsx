@@ -1,10 +1,16 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
+import moment from "moment";
 
-const DataTitle = () => {
+type Props = {
+  countryName: string;
+  date: string;
+};
+
+const DataTitle: FunctionComponent<Props> = ({ countryName, date }) => {
   return (
     <div className='flex flex-col justify-center items-center font-open-sans'>
-      <h1 className='font-bold text-4xl mb-2'>Global</h1>
-      <h4 className='text-lg'>April 21st 2021, 1:18:41 pm</h4>
+      <h1 className='font-bold text-4xl mb-2'>{countryName}</h1>
+      <h4 className='text-lg'>{moment(date).format("DD MMMM YYYY")}</h4>
     </div>
   );
 };
