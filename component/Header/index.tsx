@@ -15,7 +15,9 @@ const Header = () => {
         <h4 className='text-base '>
           <span>Api by </span>
           <span>
-            <Link href='#'>coronatracker.com</Link>
+            <Link href='https://rapidapi.com/Gramzivi/api/covid-19-data'>
+              rapidapi.com
+            </Link>
           </span>
         </h4>
       </div>
