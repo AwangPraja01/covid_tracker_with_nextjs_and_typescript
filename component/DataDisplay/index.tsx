@@ -7,9 +7,6 @@ interface Props {
 }
 
 const DataDisplay = ({ total, updatedDate }: Props) => {
-  // const filteringData = () =>
-  //   countryData.filter((item: ICountryData) => countryName == item.country);
-
   return (
     <div className='data-diplay-container shadow-md border-t-8 border-red-500 rounded-md'>
       <span className='text-base font-open-sans'>Coronavirus cases</span>

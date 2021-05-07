@@ -19,12 +19,6 @@ const Home: FunctionComponent = ({
   const filteringData = () =>
     data.filter((item: ICountryData) => country == item.country);
 
-  // console.log(filteringData());
-  // console.log(data.filter((item) => country == item.country));
-  // console.log(data);
-  // console.log(countryData[0]);
-  // console.log(data.map((names) => names.country));
-
   return (
     <div className='bg-gray-100 p-5'>
       <Head>
@@ -34,6 +28,10 @@ const Home: FunctionComponent = ({
           content='This is a website created to monitor the number of people affected by the Covid 19 virus'
         />
         <link rel='icon' href='/coronavirus.ico' />
+        <link
+          href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css'
+          rel='stylesheet'
+        />
       </Head>
 
       <main className='flex flex-row justify-around'>
@@ -73,7 +71,7 @@ const Home: FunctionComponent = ({
               updatedDate={filteringData()[0].updatedAt}
             />
           </div>
-          <div className='flex-1'>
+          <div>
             <MapBoxDataDisplay />
           </div>
         </div>
