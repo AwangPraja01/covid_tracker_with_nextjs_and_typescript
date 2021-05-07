@@ -8,13 +8,13 @@ interface Props {
 
 const DataDisplayAll = ({ data }: Props) => {
   return (
-    <div className='bg-white shadow-md flex flex-col p-4 rounded-md overflow-y-scroll h-161 data-display-all'>
+    <div className='bg-white shadow-md flex flex-col p-4 rounded-md h-161 '>
       <div className='flex justify-center mb-5'>
         <span className='font-open-sans text-2xl font-semibold '>
           Live cases by country
         </span>
       </div>
-      <div id='table'>
+      <div id='table' className='overflow-y-scroll data-display-all'>
         {data.map((item: ICountryData) => (
           <div
             key={uuidv4()}
