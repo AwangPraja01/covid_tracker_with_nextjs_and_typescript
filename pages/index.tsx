@@ -11,9 +11,12 @@ const Home: FunctionComponent = ({
   data,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const [country, setCountry] = useState<string>("Afghanistan");
+  const [dataType, setDataType] = useState<string>("cases");
 
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    setCountry(e.target.value);
+    if (e.target.name == "country") {
+      setCountry(e.target.value);
+    }
   };
 
   const filteringData = () =>
@@ -57,17 +60,23 @@ const Home: FunctionComponent = ({
               </select>
             </div>
           </div>
-          <div className='flex flex-row'>
+          <div className='flex flex-row  '>
             <DataDisplay
+              title='Coronavirus cases'
               total={filteringData()[0].stats.confirmed}
+              color='-red-500'
               updatedDate={filteringData()[0].updatedAt}
             />
             <DataDisplay
-              total={filteringData()[0].stats.deaths}
-              updatedDate={filteringData()[0].updatedAt}
-            />
-            <DataDisplay
+              title='Recovered'
               total={filteringData()[0].stats.recovered}
+              color='-green-500'
+              updatedDate={filteringData()[0].updatedAt}
+            />
+            <DataDisplay
+              title='Deaths'
+              total={filteringData()[0].stats.deaths}
+              color='-red-700'
               updatedDate={filteringData()[0].updatedAt}
             />
           </div>

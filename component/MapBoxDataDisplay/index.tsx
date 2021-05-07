@@ -9,7 +9,9 @@ import "mapbox-gl/dist/mapbox-gl.css";
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZGFya2NvZGUzMjEiLCJhIjoiY2tvZWZ6Z2k4MGExYTJ1cHd6aThxdjFpZCJ9.ckpEesiEsYgRN7Sw-Jh9IQ";
 
-const MapBoxDataDisplay = () => {
+interface Props {}
+
+const MapBoxDataDisplay = ({}: Props) => {
   const mapboxElRef = useRef(null);
 
   const fetcher = (url) =>
