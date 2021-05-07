@@ -15,3 +15,11 @@
 .data-display-all::-webkit-scrollbar {
   width: 0;
 }
+
+.item-cell:nth-child(odd) {
+  @apply bg-gray-200;
+}
+
+.item-cell:nth-child(even) {
+  @apply bg-white;
+}

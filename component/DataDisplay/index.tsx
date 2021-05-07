@@ -1,15 +1,22 @@
 import React from "react";
+import { ICountryData } from "../../Interfaces";
 
-interface Props {}
+interface Props {
+  total: number;
+  updatedDate: string;
+}
 
-const DataDisplay = ({}: Props) => {
+const DataDisplay = ({ total, updatedDate }: Props) => {
+  // const filteringData = () =>
+  //   countryData.filter((item: ICountryData) => countryName == item.country);
+
   return (
     <div className='data-diplay-container shadow-md border-t-8 border-red-500 rounded-md'>
       <span className='text-base font-open-sans'>Coronavirus cases</span>
       <span className='text-2xl mb-2 font-open-sans font-bold text-green-400'>
-        Today : +840.4k
+        Total : + {total}
       </span>
-      <span className='text-lg font-open-sans font-bold'>Total : +156.7m</span>
+      <span className='text-lg font-open-sans font-bold'>{updatedDate}</span>
     </div>
   );
 };

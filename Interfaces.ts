@@ -1,15 +1,8 @@
-export interface IData {
+export interface ICountryData {
+  coordinates: { latitude: string; longitude: string };
   country: string;
-  date: string;
-  latitude: number;
-  longitude: number;
-  provinces: Array<IProvince>;
-}
-
-export interface IProvince {
-  active: number;
-  confirmed: number;
-  deaths: number;
-  province: string;
-  recovered: number;
+  county: null;
+  province: null;
+  stats: { confirmed: number; deaths: number; recovered: number };
+  updatedAt: string;
 }

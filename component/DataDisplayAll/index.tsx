@@ -1,6 +1,12 @@
 import React from "react";
+import { ICountryData } from "../../Interfaces";
+import { v4 as uuidv4 } from "uuid";
 
-const DataDisplayAll = () => {
+interface Props {
+  data: [];
+}
+
+const DataDisplayAll = ({ data }: Props) => {
   return (
     <div className='bg-white shadow-md flex flex-col p-4 rounded-md overflow-y-scroll h-161 data-display-all'>
       <div className='flex justify-center mb-5'>
@@ -9,70 +15,14 @@ const DataDisplayAll = () => {
         </span>
       </div>
       <div id='table'>
-        <div className='flex flex-row justify-between bg-gray-200 rounded-sm font-open-sans p-2'>
-          <span>France</span>
-          <span className='font-semibold'>5,728,090</span>
-        </div>
-        <div className='flex flex-row justify-between bg-white rounded-sm font-open-sans p-2'>
-          <span>Brazil</span>
-          <span className='font-semibold'>15,009,023</span>
-        </div>
-        <div className='flex flex-row justify-between bg-gray-200 rounded-sm font-open-sans p-2'>
-          <span>France</span>
-          <span className='font-semibold'>5,728,090</span>
-        </div>
-        <div className='flex flex-row justify-between bg-white rounded-sm font-open-sans p-2'>
-          <span>Brazil</span>
-          <span className='font-semibold'>15,009,023</span>
-        </div>
-        <div className='flex flex-row justify-between bg-gray-200 rounded-sm font-open-sans p-2'>
-          <span>France</span>
-          <span className='font-semibold'>5,728,090</span>
-        </div>
-        <div className='flex flex-row justify-between bg-white rounded-sm font-open-sans p-2'>
-          <span>Brazil</span>
-          <span className='font-semibold'>15,009,023</span>
-        </div>
-        <div className='flex flex-row justify-between bg-gray-200 rounded-sm font-open-sans p-2'>
-          <span>France</span>
-          <span className='font-semibold'>5,728,090</span>
-        </div>
-        <div className='flex flex-row justify-between bg-white rounded-sm font-open-sans p-2'>
-          <span>Brazil</span>
-          <span className='font-semibold'>15,009,023</span>
-        </div>
-        <div className='flex flex-row justify-between bg-gray-200 rounded-sm font-open-sans p-2'>
-          <span>France</span>
-          <span className='font-semibold'>5,728,090</span>
-        </div>
-        <div className='flex flex-row justify-between bg-white rounded-sm font-open-sans p-2'>
-          <span>Brazil</span>
-          <span className='font-semibold'>15,009,023</span>
-        </div>
-        <div className='flex flex-row justify-between bg-gray-200 rounded-sm font-open-sans p-2'>
-          <span>France</span>
-          <span className='font-semibold'>5,728,090</span>
-        </div>
-        <div className='flex flex-row justify-between bg-white rounded-sm font-open-sans p-2'>
-          <span>Brazil</span>
-          <span className='font-semibold'>15,009,023</span>
-        </div>
-        <div className='flex flex-row justify-between bg-gray-200 rounded-sm font-open-sans p-2'>
-          <span>France</span>
-          <span className='font-semibold'>5,728,090</span>
-        </div>
-        <div className='flex flex-row justify-between bg-white rounded-sm font-open-sans p-2'>
-          <span>Brazil</span>
-          <span className='font-semibold'>15,009,023</span>
-        </div>
-        <div className='flex flex-row justify-between bg-gray-200 rounded-sm font-open-sans p-2'>
-          <span>France</span>
-          <span className='font-semibold'>5,728,090</span>
-        </div>
-        <div className='flex flex-row justify-between bg-white rounded-sm font-open-sans p-2'>
-          <span>Brazil</span>
-          <span className='font-semibold'>15,009,023</span>
-        </div>
+        {data.map((item: ICountryData) => (
+          <div
+            key={uuidv4()}
+            className='flex flex-row justify-between item-cell rounded-sm font-open-sans p-2'>
+            <span>{item.country}</span>
+            <span className='font-semibold'>{item.stats.confirmed}</span>
+          </div>
+        ))}
       </div>
     </div>
   );
