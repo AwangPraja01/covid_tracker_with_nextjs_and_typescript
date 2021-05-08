@@ -32,7 +32,7 @@ const Home: FunctionComponent = ({
           content='width=device-width, initial-scale=1, maximum-scale=1'></meta>
         <meta
           name='description'
-          content='This is a website created to monitor the number of people affected by the Covid 19 virus'
+          content='The calculation of the number of deaths, the number of cures, and the number of confirmed cases of the corona virus (COVID-19), in the last weeks for which data is available. Website Covid 19 tracker personal project made with next js.'
         />
         <link rel='icon' href='/coronavirus.ico' />
         <link
