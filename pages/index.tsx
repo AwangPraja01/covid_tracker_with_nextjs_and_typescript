@@ -13,16 +13,14 @@ const Home: FunctionComponent = ({
   const [country, setCountry] = useState<string>("Afghanistan");
   const [dataType, setDataType] = useState<string>("cases");
 
-  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLSelectElement>): void => {
     if (e.target.name == "country") {
       setCountry(e.target.value);
     }
   };
 
-  const filteringData = () =>
+  const filteringData = (): {} =>
     data.filter((item: ICountryData) => country == item.country);
-
-  console.log(data);
 
   return (
     <div className='bg-gray-100 p-5'>
@@ -119,7 +117,7 @@ const Home: FunctionComponent = ({
 
 export const getStaticProps: GetStaticProps = async () => {
   const res = await fetch(`https://corona.lmao.ninja/v2/jhucsse`);
-  const data = await res.json();
+  const data: ICountryData[] = await res.json();
 
   return {
     props: { data },

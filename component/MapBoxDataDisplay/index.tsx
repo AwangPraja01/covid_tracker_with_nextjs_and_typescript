@@ -4,8 +4,6 @@ import useSWR from "swr";
 import lookup from "country-code-lookup";
 import "mapbox-gl/dist/mapbox-gl.css";
 
-// secret token = sk.eyJ1IjoiZGFya2NvZGUzMjEiLCJhIjoiY2tvZWdva3piMDU0bzJucDJhbzgwN3dvbSJ9.HfT6GqzWDF7Ne2Uma8l1KA
-
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZGFya2NvZGUzMjEiLCJhIjoiY2tvZWZ6Z2k4MGExYTJ1cHd6aThxdjFpZCJ9.ckpEesiEsYgRN7Sw-Jh9IQ";
 

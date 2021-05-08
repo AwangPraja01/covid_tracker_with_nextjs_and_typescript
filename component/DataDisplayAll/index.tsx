@@ -1,4 +1,3 @@
-import React from "react";
 import { ICountryData } from "../../Interfaces";
 import { v4 as uuidv4 } from "uuid";
 import NumberFormat from "react-number-format";

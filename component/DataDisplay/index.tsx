@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Moment from "react-moment";
 import NumberFormat from "react-number-format";
 
@@ -13,7 +12,7 @@ const DataDisplay = ({ total, updatedDate, title, color }: Props) => {
   return (
     <div className='flex flex-col'>
       <span className='text-base font-open-sans'>{title}</span>
-      <span className={` text-2xl mb-2 font-open-sans font-bold text${color}`}>
+      <span className={`text-2xl mb-2 font-open-sans font-bold text${color}`}>
         <span>Total : </span>
         <span>
           <NumberFormat
