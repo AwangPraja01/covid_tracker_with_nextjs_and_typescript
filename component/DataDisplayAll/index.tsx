@@ -10,7 +10,7 @@ const DataDisplayAll = ({ data }: Props) => {
   return (
     <div className='bg-white shadow-md flex flex-col p-4 rounded-md h-161 '>
       <div className='flex justify-center mb-5'>
-        <span className='font-open-sans text-2xl font-semibold '>
+        <span className='font-open-sans text-2xl lg:text-xl xl:text-2xl font-semibold '>
           Live cases by country
         </span>
       </div>

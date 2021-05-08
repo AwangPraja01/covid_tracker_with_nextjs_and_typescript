@@ -192,7 +192,7 @@ const MapBoxDataDisplay = ({ dataType }: Props) => {
 
   return (
     <div className='bg-white rounded-md shadow-md mt-5 p-4'>
-      <div className='rounded-md h-96 w-full' ref={mapboxElRef}></div>
+      <div className='rounded-md h-48 md:h-96 w-full' ref={mapboxElRef}></div>
     </div>
   );
 };

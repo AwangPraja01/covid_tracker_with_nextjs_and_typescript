@@ -4,13 +4,13 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <div className='flex-1 flex flex-row justify-between items-center'>
-      <div>
-        <span className='font-open-sans text-lg font-semibold'>
+    <div className='flex-1 flex flex-col md:flex-row justify-between items-center'>
+      <div className='flex justify-center'>
+        <span className='font-open-sans text-center md:text-left text-sm md:text-lg font-semibold'>
           Copyright &copy; 2021 Awang Praja Anugerah
         </span>
       </div>
-      <div className='flex flex-row'>
+      <div className='flex flex-row mt-4 md:mt-0'>
         <span className='social-media-icon '>
           <Link href='https://github.com/AwangPraja01/covid_tracker_with_nextjs_and_typescript/tree/v.2.0.0'>
             <a target='_blank' rel='noopener noreferrer'>

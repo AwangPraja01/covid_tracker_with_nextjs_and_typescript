@@ -41,15 +41,15 @@ const Home: FunctionComponent = ({
         />
       </Head>
 
-      <main className='flex flex-row justify-around p-5'>
-        <div id='left-section' className='w-3/5'>
-          <div className='flex flex-row justify-between items-center mb-5'>
+      <main className='flex flex-col lg:flex-row justify-around p-5'>
+        <div id='left-section' className='w-full lg:w-3/5'>
+          <div className='flex flex-col md:flex-row justify-between items-center mb-5'>
             <div>
               <span className='text-3xl font-open-sans font-bold text-red-600'>
                 COVID-19 TRACKER
               </span>
             </div>
-            <div className='select-wrapper'>
+            <div className='select-wrapper mt-4 md:mt-0'>
               <select
                 name='country'
                 id='country'
@@ -64,11 +64,11 @@ const Home: FunctionComponent = ({
               </select>
             </div>
           </div>
-          <div className='flex flex-row  '>
+          <div className='flex flex-col md:flex-row '>
             <div
               onClick={() => setDataType("cases")}
               id='cases'
-              className={`data-diplay-container shadow-md border-t-8 rounded-md cursor-pointer ${
+              className={`data-diplay-container ${
                 dataType === "cases" ? "border-red-500" : "border-transparent"
               }`}>
               <DataDisplay
@@ -81,7 +81,7 @@ const Home: FunctionComponent = ({
             <div
               onClick={() => setDataType("recovered")}
               id='recovered'
-              className={`data-diplay-container shadow-md border-t-8 rounded-md cursor-pointer ${
+              className={`data-diplay-container ${
                 dataType === "recovered"
                   ? "border-green-500"
                   : "border-transparent"
@@ -96,7 +96,7 @@ const Home: FunctionComponent = ({
             <div
               onClick={() => setDataType("deaths")}
               id='deaths'
-              className={`data-diplay-container shadow-md border-t-8 rounded-md cursor-pointer ${
+              className={`data-diplay-container ${
                 dataType === "deaths" ? "border-red-700" : "border-transparent"
               }`}>
               <DataDisplay
@@ -111,12 +111,14 @@ const Home: FunctionComponent = ({
             <MapBoxDataDisplay dataType={dataType} />
           </div>
         </div>
-        <div id='right-section' className='w-2/6 h-161'>
+        <div
+          id='right-section'
+          className='w-full mt-5 lg:mt-0 lg:w-2/6 lg:h-161'>
           <DataDisplayAll data={data} />
         </div>
       </main>
 
-      <footer className='bg-white  flex items-center justify-between w-full h-20 px-10'>
+      <footer className='bg-white flex items-center justify-between w-full  md:h-20 px-10 py-4 md:py-0'>
         <Footer />
       </footer>
     </div>
