@@ -4,14 +4,12 @@ import useSWR from "swr";
 import lookup from "country-code-lookup";
 import "mapbox-gl/dist/mapbox-gl.css";
 
-mapboxgl.accessToken =
-  "pk.eyJ1IjoiZGFya2NvZGUzMjEiLCJhIjoiY2tvZWZ6Z2k4MGExYTJ1cHd6aThxdjFpZCJ9.ckpEesiEsYgRN7Sw-Jh9IQ";
-
 interface Props {
   country: string;
-
   dataType: string;
 }
+
+mapboxgl.accessToken = process.env.MAPBOXGL_ACCESSTOKEN;
 
 const MapBoxDataDisplay = ({ dataType, country }: Props) => {
   const mapboxElRef = useRef(null);
@@ -47,9 +45,7 @@ const MapBoxDataDisplay = ({ dataType, country }: Props) => {
       const map = new mapboxgl.Map({
         container: mapboxElRef.current,
         style: "mapbox://styles/mapbox/outdoors-v11",
-        center: [0, 0],
         zoom: 3,
-        hash: true,
       });
 
       map.on("load", () => {
@@ -58,7 +54,14 @@ const MapBoxDataDisplay = ({ dataType, country }: Props) => {
         );
         const mapCenter = filteredData[0].geometry.coordinates;
 
-        map.flyTo({ center: [parseInt(mapCenter[0]), parseInt(mapCenter[1])] });
+        map.flyTo({
+          center: [parseInt(mapCenter[0]), parseInt(mapCenter[1])],
+          essential: true,
+          curve: 1,
+          speed: 0.4,
+          bearing: 0,
+        });
+
         map.addSource("points", {
           type: "geojson",
           data: {
