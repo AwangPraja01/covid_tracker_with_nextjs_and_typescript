@@ -23,3 +23,11 @@
 .item-cell:nth-child(even) {
   @apply bg-white;
 }
+
+.social-media-icon {
+  @apply text-3xl mr-4 cursor-pointer hover:text-red-600;
+}
+
+.social-media-icon:last-child {
+  @apply mr-0;
+}

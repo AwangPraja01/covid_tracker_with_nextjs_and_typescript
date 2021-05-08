@@ -6,6 +6,7 @@ import DataDisplayAll from "../component/DataDisplayAll";
 import MapBoxDataDisplay from "../component/MapBoxDataDisplay";
 import { v4 as uuidv4 } from "uuid";
 import { ICountryData } from "../Interfaces";
+import Footer from "../component/Footer";
 
 const Home: FunctionComponent = ({
   data,
@@ -23,9 +24,12 @@ const Home: FunctionComponent = ({
     data.filter((item: ICountryData) => country == item.country);
 
   return (
-    <div className='bg-gray-100 p-5'>
+    <div className='bg-gray-100 '>
       <Head>
         <title>Covid - 19 Tracker Website</title>
+        <meta
+          name='viewport'
+          content='width=device-width, initial-scale=1, maximum-scale=1'></meta>
         <meta
           name='description'
           content='This is a website created to monitor the number of people affected by the Covid 19 virus'
@@ -37,7 +41,7 @@ const Home: FunctionComponent = ({
         />
       </Head>
 
-      <main className='flex flex-row justify-around'>
+      <main className='flex flex-row justify-around p-5'>
         <div id='left-section' className='w-3/5'>
           <div className='flex flex-row justify-between items-center mb-5'>
             <div>
@@ -111,6 +115,10 @@ const Home: FunctionComponent = ({
           <DataDisplayAll data={data} />
         </div>
       </main>
+
+      <footer className='bg-white  flex items-center justify-between w-full h-20 px-10'>
+        <Footer />
+      </footer>
     </div>
   );
 };
