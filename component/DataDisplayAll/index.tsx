@@ -1,6 +1,7 @@
 import React from "react";
 import { ICountryData } from "../../Interfaces";
 import { v4 as uuidv4 } from "uuid";
+import NumberFormat from "react-number-format";
 
 interface Props {
   data: [];
@@ -20,7 +21,13 @@ const DataDisplayAll = ({ data }: Props) => {
             key={uuidv4()}
             className='flex flex-row justify-between item-cell rounded-sm font-open-sans p-2'>
             <span>{item.country}</span>
-            <span className='font-semibold'>{item.stats.confirmed}</span>
+            <span className='font-semibold'>
+              <NumberFormat
+                value={item.stats.confirmed}
+                displayType={"text"}
+                thousandSeparator={true}
+              />
+            </span>
           </div>
         ))}
       </div>

@@ -22,6 +22,8 @@ const Home: FunctionComponent = ({
   const filteringData = () =>
     data.filter((item: ICountryData) => country == item.country);
 
+  console.log(data);
+
   return (
     <div className='bg-gray-100 p-5'>
       <Head>
@@ -41,7 +43,7 @@ const Home: FunctionComponent = ({
         <div id='left-section' className='w-3/5'>
           <div className='flex flex-row justify-between items-center mb-5'>
             <div>
-              <span className='text-3xl font-open-sans font-bold'>
+              <span className='text-3xl font-open-sans font-bold text-red-600'>
                 COVID-19 TRACKER
               </span>
             </div>
@@ -61,27 +63,50 @@ const Home: FunctionComponent = ({
             </div>
           </div>
           <div className='flex flex-row  '>
-            <DataDisplay
-              title='Coronavirus cases'
-              total={filteringData()[0].stats.confirmed}
-              color='-red-500'
-              updatedDate={filteringData()[0].updatedAt}
-            />
-            <DataDisplay
-              title='Recovered'
-              total={filteringData()[0].stats.recovered}
-              color='-green-500'
-              updatedDate={filteringData()[0].updatedAt}
-            />
-            <DataDisplay
-              title='Deaths'
-              total={filteringData()[0].stats.deaths}
-              color='-red-700'
-              updatedDate={filteringData()[0].updatedAt}
-            />
+            <div
+              onClick={() => setDataType("cases")}
+              id='cases'
+              className={`data-diplay-container shadow-md border-t-8 rounded-md cursor-pointer ${
+                dataType === "cases" ? "border-red-500" : "border-transparent"
+              }`}>
+              <DataDisplay
+                title='Coronavirus cases'
+                total={filteringData()[0].stats.confirmed}
+                color='-red-500'
+                updatedDate={filteringData()[0].updatedAt}
+              />
+            </div>
+            <div
+              onClick={() => setDataType("recovered")}
+              id='recovered'
+              className={`data-diplay-container shadow-md border-t-8 rounded-md cursor-pointer ${
+                dataType === "recovered"
+                  ? "border-green-500"
+                  : "border-transparent"
+              }`}>
+              <DataDisplay
+                title='Recovered'
+                total={filteringData()[0].stats.recovered}
+                color='-green-500'
+                updatedDate={filteringData()[0].updatedAt}
+              />
+            </div>
+            <div
+              onClick={() => setDataType("deaths")}
+              id='deaths'
+              className={`data-diplay-container shadow-md border-t-8 rounded-md cursor-pointer ${
+                dataType === "deaths" ? "border-red-700" : "border-transparent"
+              }`}>
+              <DataDisplay
+                title='Deaths'
+                total={filteringData()[0].stats.deaths}
+                color='-red-700'
+                updatedDate={filteringData()[0].updatedAt}
+              />
+            </div>
           </div>
           <div>
-            <MapBoxDataDisplay />
+            <MapBoxDataDisplay dataType={dataType} />
           </div>
         </div>
         <div id='right-section' className='w-2/6 h-161'>

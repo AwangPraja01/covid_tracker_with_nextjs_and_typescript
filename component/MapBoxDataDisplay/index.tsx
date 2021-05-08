@@ -9,9 +9,11 @@ import "mapbox-gl/dist/mapbox-gl.css";
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZGFya2NvZGUzMjEiLCJhIjoiY2tvZWZ6Z2k4MGExYTJ1cHd6aThxdjFpZCJ9.ckpEesiEsYgRN7Sw-Jh9IQ";
 
-interface Props {}
+interface Props {
+  dataType: string;
+}
 
-const MapBoxDataDisplay = ({}: Props) => {
+const MapBoxDataDisplay = ({ dataType }: Props) => {
   const mapboxElRef = useRef(null);
 
   const fetcher = (url) =>
@@ -33,6 +35,7 @@ const MapBoxDataDisplay = ({}: Props) => {
             province: point.province,
             cases: point.stats.confirmed,
             deaths: point.stats.deaths,
+            recovered: point.stats.recovered,
           },
         }))
       );
@@ -44,13 +47,13 @@ const MapBoxDataDisplay = ({}: Props) => {
       const map = new mapboxgl.Map({
         container: mapboxElRef.current,
         style: "mapbox://styles/mapbox/streets-v11",
-        center: [16, 27],
+        center: [115, -2],
         zoom: 2,
       });
 
       map.addControl(new mapboxgl.NavigationControl());
 
-      map.once("load", function () {
+      map.on("load", function () {
         map.addSource("points", {
           type: "geojson",
           data: {
@@ -69,7 +72,7 @@ const MapBoxDataDisplay = ({}: Props) => {
             "circle-stroke-width": [
               "interpolate",
               ["linear"],
-              ["get", "cases"],
+              ["get", dataType],
               1,
               1,
               100000,
@@ -78,7 +81,7 @@ const MapBoxDataDisplay = ({}: Props) => {
             "circle-radius": [
               "interpolate",
               ["linear"],
-              ["get", "cases"],
+              ["get", dataType],
               1,
               4,
               1000,
@@ -92,25 +95,40 @@ const MapBoxDataDisplay = ({}: Props) => {
               100000,
               40,
             ],
-            "circle-color": [
-              "interpolate",
-              ["linear"],
-              ["get", "cases"],
-              1,
-              "#ffffb2",
-              5000,
-              "#fed976",
-              10000,
-              "#feb24c",
-              25000,
-              "#fd8d3c",
-              50000,
-              "#fc4e2a",
-              75000,
-              "#e31a1c",
-              100000,
-              "#b10026",
-            ],
+            "circle-color":
+              dataType === "recovered"
+                ? [
+                    "interpolate",
+                    ["linear"],
+                    ["get", dataType],
+                    1,
+                    "#73AB3F",
+                    5000,
+                    "#6BD904",
+                    10000,
+                    "#71DE0B",
+                    25000,
+                    "#8BE833",
+                  ]
+                : [
+                    "interpolate",
+                    ["linear"],
+                    ["get", dataType],
+                    1,
+                    "#ffffb2",
+                    5000,
+                    "#fed976",
+                    10000,
+                    "#feb24c",
+                    25000,
+                    "#fd8d3c",
+                    50000,
+                    "#fc4e2a",
+                    75000,
+                    "#e31a1c",
+                    100000,
+                    "#b10026",
+                  ],
           },
         });
 
@@ -172,7 +190,7 @@ const MapBoxDataDisplay = ({}: Props) => {
         });
       });
     }
-  }, [data]);
+  }, [data, dataType]);
 
   return (
     <div className='bg-white rounded-md shadow-md mt-5 p-4'>
