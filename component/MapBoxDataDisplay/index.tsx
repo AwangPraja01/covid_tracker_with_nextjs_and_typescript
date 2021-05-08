@@ -8,10 +8,12 @@ mapboxgl.accessToken =
   "pk.eyJ1IjoiZGFya2NvZGUzMjEiLCJhIjoiY2tvZWZ6Z2k4MGExYTJ1cHd6aThxdjFpZCJ9.ckpEesiEsYgRN7Sw-Jh9IQ";
 
 interface Props {
+  country: string;
+
   dataType: string;
 }
 
-const MapBoxDataDisplay = ({ dataType }: Props) => {
+const MapBoxDataDisplay = ({ dataType, country }: Props) => {
   const mapboxElRef = useRef(null);
 
   const fetcher = (url) =>
@@ -44,14 +46,19 @@ const MapBoxDataDisplay = ({ dataType }: Props) => {
     if (data) {
       const map = new mapboxgl.Map({
         container: mapboxElRef.current,
-        style: "mapbox://styles/mapbox/streets-v11",
-        center: [115, -2],
-        zoom: 2,
+        style: "mapbox://styles/mapbox/outdoors-v11",
+        center: [0, 0],
+        zoom: 3,
+        hash: true,
       });
 
-      map.addControl(new mapboxgl.NavigationControl());
+      map.on("load", () => {
+        const filteredData = data.filter(
+          (item) => country == item.properties.country
+        );
+        const mapCenter = filteredData[0].geometry.coordinates;
 
-      map.on("load", function () {
+        map.flyTo({ center: [parseInt(mapCenter[0]), parseInt(mapCenter[1])] });
         map.addSource("points", {
           type: "geojson",
           data: {
@@ -187,8 +194,10 @@ const MapBoxDataDisplay = ({ dataType }: Props) => {
           popup.remove();
         });
       });
+
+      map.addControl(new mapboxgl.NavigationControl());
     }
-  }, [data, dataType]);
+  }, [data, dataType, country]);
 
   return (
     <div className='bg-white rounded-md shadow-md mt-5 p-4'>

@@ -11,17 +11,15 @@ import Footer from "../component/Footer";
 const Home: FunctionComponent = ({
   data,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const [country, setCountry] = useState<string>("Afghanistan");
+  const [country, setCountry] = useState<string>("Indonesia");
   const [dataType, setDataType] = useState<string>("cases");
-
-  const handleChange = (e: ChangeEvent<HTMLSelectElement>): void => {
-    if (e.target.name == "country") {
-      setCountry(e.target.value);
-    }
-  };
 
   const filteringData = (): {} =>
     data.filter((item: ICountryData) => country == item.country);
+
+  const handleChange = (e: ChangeEvent<HTMLSelectElement>): void => {
+    setCountry(e.target.value);
+  };
 
   return (
     <div className='bg-gray-100 '>
@@ -108,7 +106,7 @@ const Home: FunctionComponent = ({
             </div>
           </div>
           <div>
-            <MapBoxDataDisplay dataType={dataType} />
+            <MapBoxDataDisplay country={country} dataType={dataType} />
           </div>
         </div>
         <div
